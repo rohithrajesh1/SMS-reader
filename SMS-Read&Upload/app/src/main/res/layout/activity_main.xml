@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etPhoneNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/etMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -28,9 +28,9 @@
             android:inputType="textMultiLine" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSendSMS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Send SMS" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
