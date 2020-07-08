@@ -52,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,smsMsgList);
         lvsms.setAdapter(arrayAdapter);
 
+        if(checkPermission(Manifest.permission.READ_SMS)){
+            refreshInbox();
+        }
+        else{
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{
+                    (Manifest.permission.READ_SMS)}, REQUEST_CODE_PERMISSION_READ_SMS);
+        }
+
         if(checkPermission(Manifest.permission.SEND_SMS)){
             btnSendSMS.setEnabled(true);
         }

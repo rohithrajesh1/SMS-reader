@@ -33,6 +33,14 @@
             android:layout_height="wrap_content"
             android:text="Send SMS" />
 
+        <Button
+            android:id="@+id/btn_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Refresh Inbox"
+            android:onClick="refreshInbox"
+            />
+
         <ListView
             android:id="@+id/lv_sms"
             android:layout_width="match_parent"
