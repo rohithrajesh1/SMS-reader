@@ -3,8 +3,10 @@ package com.example.sms_readupload;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 public class SMSReceiver extends BroadcastReceiver {
 
@@ -17,13 +19,21 @@ public class SMSReceiver extends BroadcastReceiver {
             if (bundle != null) {
                 Object[] sms = (Object[]) bundle.get(SMS_BUNDLE);
                 String smsMsg = "";
+                SmsMessage smsMessage;
                 for (int i = 0; i < sms.length; i++) {
-                    SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) sms[i]);
+                    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                        String format = bundle.getString("format");
+                        smsMessage = SmsMessage.createFromPdu((byte[]) sms[i],format);
+
+                    }else{
+                        smsMessage = SmsMessage.createFromPdu((byte[]) sms[i]);
+                    }
                     String msgBody = smsMessage.getMessageBody().toString();
                     String msgAddress = smsMessage.getOriginatingAddress();
                     smsMsg += msgBody + "\n";
 
                 }
+                Log.d("tag",smsMsg);
 
                 MainActivity inst = MainActivity.Instance();
                 inst.updateList(smsMsg);
